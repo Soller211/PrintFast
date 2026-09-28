@@ -172,3 +172,28 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
+
+const appVersion = '1.0.1'; // keep in sync with pubspec.yaml
+
+void showAbout(BuildContext context) {
+  final scheme = Theme.of(context).colorScheme;
+  showAboutDialog(
+    context: context,
+    applicationName: 'PrintFast',
+    applicationVersion: 'Versión $appVersion',
+    applicationIcon: Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(color: scheme.primary, borderRadius: BorderRadius.circular(12)),
+      child: Icon(Icons.print_rounded, color: scheme.onPrimary),
+    ),
+    applicationLegalese: '© 2026 Soller · Licencia MIT',
+    children: const [
+      SizedBox(height: 16),
+      Text('Creada por Soller para imprimir de una sola vez lo que llega por WhatsApp.'),
+      SizedBox(height: 12),
+      Text('Código abierto:'),
+      SelectableText('github.com/Soller211/PrintFast'),
+    ],
+  );
+}

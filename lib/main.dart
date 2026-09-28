@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
@@ -16,6 +17,9 @@ void main() => runApp(MaterialApp(
       title: 'PrintFast',
       theme: appTheme(Brightness.light),
       darkTheme: appTheme(Brightness.dark),
+      locale: const Locale('es'),
+      supportedLocales: const [Locale('es')],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       home: const HomeScreen(),
     ));
 
@@ -165,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           if (_items.isNotEmpty)
             IconButton(icon: const Icon(Icons.delete_sweep_rounded), tooltip: 'Vaciar lista', onPressed: _busy ? null : _clear),
+          IconButton(icon: const Icon(Icons.info_outline_rounded), tooltip: 'Acerca de', onPressed: () => showAbout(context)),
         ],
         bottom: _busy
             ? const PreferredSize(preferredSize: Size.fromHeight(4), child: LinearProgressIndicator())
